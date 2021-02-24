@@ -27,5 +27,5 @@ jobs:
   pool:
     vmImage: ubuntu-latest
   steps:
-  - script: echo hi!!!!!! > /tmp/myfile
-  - script: cat /tmp/myfile
+  - script: echo '##vso[task.setVariable variable=myVar]myValue'
+  - script: echo $MYVAR
