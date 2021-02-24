@@ -6,14 +6,6 @@
 trigger:
 - master
 
-schedules:
-- cron: "* * * * *"
-  displayName: mySchedule
-  branches:
-    include: [ master ] # which branches the schedule applies to
-    exclude: [] # which branches to exclude from the schedule
-  always: true
-
 pool:
   vmImage: ubuntu-latest
 
