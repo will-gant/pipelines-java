@@ -33,6 +33,7 @@ jobs:
   steps:
   - script: echo '##vso[task.setVariable variable=myVar]myValue'
   - script: | 
-      echo $(mysecret) > secretfile
-      cat secretfile
+      echo my secret is $MY_MAPPED_ENV_VAR
       echo my regular var is $(hello)
+    env:
+      MY_MAPPED_ENV_VAR: $(mysecret)
