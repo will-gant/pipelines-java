@@ -27,4 +27,5 @@ jobs:
   pool:
     vmImage: ubuntu-latest
   steps:
-  - script: echo hi!!!!!!
+  - script: echo hi!!!!!! > /tmp/myfile
+  - script: cat /tmp/myfile
