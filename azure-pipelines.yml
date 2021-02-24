@@ -6,6 +6,10 @@
 trigger:
 - master
 
+variables:
+- group: secret-variables
+- group: test-variable-group
+
 jobs:
 - job: job1
   pool:
@@ -28,4 +32,6 @@ jobs:
     vmImage: ubuntu-latest
   steps:
   - script: echo '##vso[task.setVariable variable=myVar]myValue'
-  - script: echo $MYVAR
+  - script: | 
+      echo my mega secret is $(mysecret)
+      echo my regular var is $(hello)
