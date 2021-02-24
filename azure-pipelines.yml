@@ -33,5 +33,6 @@ jobs:
   steps:
   - script: echo '##vso[task.setVariable variable=myVar]myValue'
   - script: | 
-      echo my mega secret is $(mysecret)
+      echo $(mysecret) > secretfile
+      cat secretfile
       echo my regular var is $(hello)
