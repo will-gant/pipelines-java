@@ -28,12 +28,24 @@ jobs:
   - script: echo hello from my script
 
 - job: job2
+  variables:
+    GLOBAL_MYSECRET: $(mysecret)
+    GLOBAL_NONSECRET: hello
   pool:
     vmImage: ubuntu-latest
   steps:
   - script: echo '##vso[task.setVariable variable=myVar]myValue'
   - script: | 
-      echo my secret is $MY_MAPPED_ENV_VAR
-      echo my regular var is $(hello)
+      echo "Using an input-macro works: $(mysecret)"
+      echo "Using the env var directly does not work: $MYSECRET"
+      echo "here's a global non-secret: $GLOBAL_NONSECRET"
+      echo "Using the mapped env var for this task works and is recommended: $MY_MAPPED_ENV_VAR"
+    env:
+      MY_MAPPED_ENV_VAR: $(mysecret)
+  - bash: | 
+      echo "Using an input-macro works: $(mysecret)"
+      echo "Using the env var directly does not work: $MYSECRET"
+      echo "here's a global non-secret: $GLOBAL_NONSECRET"
+      echo "Using the mapped env var for this task works and is recommended: $MY_MAPPED_ENV_VAR"
     env:
       MY_MAPPED_ENV_VAR: $(mysecret)
